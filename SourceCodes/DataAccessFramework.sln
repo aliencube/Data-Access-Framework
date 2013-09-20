@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessFramework.Configuration", "DataAccessFramework.Configuration\DataAccessFramework.Configuration.csproj", "{74FC104F-2390-44DA-9166-BE200D7CEA98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessFramework", "DataAccessFramework\DataAccessFramework.csproj", "{CBCFC644-881D-48C6-B097-90B05712C2FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{DB67445E-CAB8-48A8-84DB-D75C819B52C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Properties", "Properties", "{4463DFDE-4FEC-4E5A-B4C5-B558BE6A55AA}"
+	ProjectSection(SolutionItems) = preProject
+		..\Documents\Properties\CommonAssemblyInfo.cs = ..\Documents\Properties\CommonAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74FC104F-2390-44DA-9166-BE200D7CEA98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74FC104F-2390-44DA-9166-BE200D7CEA98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74FC104F-2390-44DA-9166-BE200D7CEA98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74FC104F-2390-44DA-9166-BE200D7CEA98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBCFC644-881D-48C6-B097-90B05712C2FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBCFC644-881D-48C6-B097-90B05712C2FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBCFC644-881D-48C6-B097-90B05712C2FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBCFC644-881D-48C6-B097-90B05712C2FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4463DFDE-4FEC-4E5A-B4C5-B558BE6A55AA} = {DB67445E-CAB8-48A8-84DB-D75C819B52C7}
+	EndGlobalSection
+EndGlobal
