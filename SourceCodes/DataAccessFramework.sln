@@ -12,6 +12,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Properties", "Properties", 
 		..\Documents\Properties\CommonAssemblyInfo.cs = ..\Documents\Properties\CommonAssemblyInfo.cs
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessFramework.Tests", "DataAccessFramework.Tests\DataAccessFramework.Tests.csproj", "{0362BE14-8959-4889-9757-389C447881A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D341003B-B05A-4612-9EB7-7ED158D5ACC7}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +33,10 @@ Global
 		{CBCFC644-881D-48C6-B097-90B05712C2FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBCFC644-881D-48C6-B097-90B05712C2FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBCFC644-881D-48C6-B097-90B05712C2FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0362BE14-8959-4889-9757-389C447881A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0362BE14-8959-4889-9757-389C447881A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0362BE14-8959-4889-9757-389C447881A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0362BE14-8959-4889-9757-389C447881A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
