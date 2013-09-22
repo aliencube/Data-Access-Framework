@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Data.Common;
+using System.Data.Entity;
 
 namespace DataAccessFramework
 {
@@ -7,6 +8,21 @@ namespace DataAccessFramework
 	/// </summary>
 	public partial class ApplicationDataContext : DbContext
 	{
+		public ApplicationDataContext()
+			: base("ApplicationDataContext")
+		{
+		}
+
+		public ApplicationDataContext(string connectionString)
+			: base(connectionString)
+		{
+		}
+
+		public ApplicationDataContext(DbConnection connection)
+			: base(connection, true)
+		{
+		}
+
 		/// <summary>
 		/// Gets or sets the list of users.
 		/// </summary>

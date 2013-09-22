@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
@@ -23,6 +26,17 @@ namespace DataAccessFramework.Tests
 		#endregion
 
 		#region Tests
+
+		[Test]
+		[TestCase("SampleDataContext", true)]
+		public void ConnectDatabase_GetConnectionString_DatabaseConnected(string connectionName, bool connected)
+		{
+			using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings[connectionName].ConnectionString))
+			{
+				connection.Open();
+				Assert.AreEqual(connected, connection.State == ConnectionState.Open);
+			}
+		}
 
 		[Test]
 		[TestCase("joebloggs", "abc123", "joe@test.org", true)]
