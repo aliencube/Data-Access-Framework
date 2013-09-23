@@ -1,14 +1,12 @@
 using System;
 using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
 using NUnit.Framework;
 using NSubstitute;
 
 namespace DataAccessFramework.Tests
 {
     [TestFixture]
-    public class ApplicationDataContextTest
+    public class DataContextTransactionTest
     {
         #region SetUp / TearDown
 
@@ -23,29 +21,6 @@ namespace DataAccessFramework.Tests
         #endregion
 
         #region Tests
-
-        [Test]
-        [TestCase("SampleDataContext", true)]
-        public void ConnectDatabase_GetConnectionString_DatabaseConnected(string connectionName, bool connected)
-        {
-            var connectionString = ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                Assert.AreEqual(connected, connection.State == ConnectionState.Open);
-            }
-        }
-
-        [Test]
-        [TestCase("SampleDataContext", true)]
-        public void ConnectDbContext_GetConnectionString_DbContextConnected(string connectionName, bool connected)
-        {
-            var connectionString = ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
-            using (var context = new ApplicationDataContext(connectionString))
-            {
-                Assert.AreEqual(connected, context.Database.Exists());
-            }
-        }
 
         [Test]
         [TestCase("joebloggs", "abc123", "joe@test.org", true)]

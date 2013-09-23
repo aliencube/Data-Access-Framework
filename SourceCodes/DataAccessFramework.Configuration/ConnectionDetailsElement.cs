@@ -172,8 +172,6 @@ namespace DataAccessFramework.Configuration
             set { this["applicationIntent"] = value; }
         }
 
-        // applicationIntent
-
         /// <summary>
         /// Gets or sets a value that indicates whether asynchronous processing is allowed
         /// by the connection created by using this connection string or not.
