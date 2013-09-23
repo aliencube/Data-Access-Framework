@@ -101,6 +101,9 @@ ClientBin
 ~$*
 *.dbmdl
 Generated_Code #added for RIA/Silverlight projects
+[Ss]ample[Dd]atabase.mdf
+[Ss]ample[Dd]atabase_log.ldf
+
 
 # Backup & report files from converting an old project file to a newer
 # Visual Studio version. Backup files are not needed, because we have git ;-)
