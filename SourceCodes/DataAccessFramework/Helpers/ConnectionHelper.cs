@@ -3,6 +3,7 @@ using DataAccessFramework.Configuration.Interfaces;
 using DataAccessFramework.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.EntityClient;
 using System.Data.SqlClient;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace DataAccessFramework.Helpers
     /// <summary>
     /// This helps to manage connections for data soruce.
     /// </summary>
-    public class ConnectionHelper : IConnectionHelper
+    public class ConnectionHelper : IConnectionHelper, IDisposable
     {
         #region Constructors
 
@@ -327,5 +328,28 @@ namespace DataAccessFramework.Helpers
         }
 
         #endregion Methods - EntityConnection
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing,
+        /// or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            if (this.SqlConnections != null && this.SqlConnections.Any())
+                foreach (var connection in this.SqlConnections
+                                               .Where(p => p.Value.State == ConnectionState.Open)
+                                               .Select(p => p.Value))
+                {
+                    connection.Close();
+                }
+
+            if (this.EntityConnections != null && this.EntityConnections.Any())
+                foreach (var connection in this.EntityConnections
+                                               .Where(p => p.Value.State == ConnectionState.Open)
+                                               .Select(p => p.Value))
+                {
+                    connection.Close();
+                }
+        }
     }
 }

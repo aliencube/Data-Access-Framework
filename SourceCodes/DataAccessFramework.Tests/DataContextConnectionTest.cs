@@ -32,20 +32,23 @@ namespace DataAccessFramework.Tests
         public void GetConnectionStrings_ListOfConnectionStringsReturned()
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
-            var helper = new ConnectionHelper(settings);
-
-            Assert.IsTrue(helper.ConnectionStrings != null && helper.ConnectionStrings.Any());
+            using (var helper = new ConnectionHelper(settings))
+            {
+                Assert.IsTrue(helper.ConnectionStrings != null && helper.ConnectionStrings.Any());
+            }
         }
 
         [Test]
         [TestCase(0)]
         public void GetConnectionString_GetIndex_ConnectionFound(int index)
         {
-            var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
-            var helper = new ConnectionHelper(settings);
-            var connectionString = helper.GetConnectionString(index);
+            var settings = (ConnectionSettings) ConfigurationManager.GetSection("connectionSettings");
+            using (var helper = new ConnectionHelper(settings))
+            {
+                var connectionString = helper.GetConnectionString(index);
 
-            Assert.IsTrue(!String.IsNullOrWhiteSpace(connectionString));
+                Assert.IsTrue(!String.IsNullOrWhiteSpace(connectionString));
+            }
         }
 
         [Test]
@@ -53,14 +56,16 @@ namespace DataAccessFramework.Tests
         public void GetConnectionString_GetIndex_ExceptionThrown(int index)
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
-            var helper = new ConnectionHelper(settings);
-            try
+            using (var helper = new ConnectionHelper(settings))
             {
-                helper.GetConnectionString(index);
-            }
-            catch (Exception ex)
-            {
-                Assert.Pass(ex.Message);
+                try
+                {
+                    helper.GetConnectionString(index);
+                }
+                catch (Exception ex)
+                {
+                    Assert.Pass(ex.Message);
+                }
             }
         }
 
@@ -69,10 +74,12 @@ namespace DataAccessFramework.Tests
         public void GetConnectionString_GetKey_ConnectionFound(string key, string initialCatalog)
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
-            var helper = new ConnectionHelper(settings);
-            var connectionString = helper.GetConnectionString(key);
+            using (var helper = new ConnectionHelper(settings))
+            {
+                var connectionString = helper.GetConnectionString(key);
 
-            Assert.IsTrue(connectionString.ToLower().Contains("initial catalog=" + initialCatalog.ToLower()));
+                Assert.IsTrue(connectionString.ToLower().Contains("initial catalog=" + initialCatalog.ToLower()));
+            }
         }
 
         [Test]
@@ -81,14 +88,16 @@ namespace DataAccessFramework.Tests
         public void GetConnectionString_GetKey_ExceptionThrown(string key, string initialCatalog)
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
-            var helper = new ConnectionHelper(settings);
-            try
+            using (var helper = new ConnectionHelper(settings))
             {
-                helper.GetConnectionString(key);
-            }
-            catch (Exception ex)
-            {
-                Assert.Pass(ex.Message);
+                try
+                {
+                    helper.GetConnectionString(key);
+                }
+                catch (Exception ex)
+                {
+                    Assert.Pass(ex.Message);
+                }
             }
         }
 
@@ -100,13 +109,9 @@ namespace DataAccessFramework.Tests
         public void GetSqlConnections_ListOfSqlConnectionsReturned()
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
-            var helper = new ConnectionHelper(settings);
-
-            Assert.IsTrue(helper.SqlConnections != null && helper.SqlConnections.Any());
-
-            foreach (var connection in helper.SqlConnections)
+            using (var helper = new ConnectionHelper(settings))
             {
-                connection.Value.Dispose();
+                Assert.IsTrue(helper.SqlConnections != null && helper.SqlConnections.Any());
             }
         }
 
@@ -115,7 +120,7 @@ namespace DataAccessFramework.Tests
         public void GetSqlConnection_GetIndex_ConnectionFound(int index, bool opened)
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
-            var helper = new ConnectionHelper(settings);
+            using(var helper = new ConnectionHelper(settings))
             using (var connection = helper.GetSqlConnection(index))
             {
                 connection.Open();
@@ -129,16 +134,18 @@ namespace DataAccessFramework.Tests
         public void GetSqlConnection_GetIndex_ExceptionThrown(int index)
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
-            var helper = new ConnectionHelper(settings);
-            try
+            using (var helper = new ConnectionHelper(settings))
             {
-                using (var connection = helper.GetSqlConnection(index))
+                try
                 {
+                    using (var connection = helper.GetSqlConnection(index))
+                    {
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                Assert.Pass(ex.Message);
+                catch (Exception ex)
+                {
+                    Assert.Pass(ex.Message);
+                }
             }
         }
 
@@ -147,7 +154,7 @@ namespace DataAccessFramework.Tests
         public void GetSqlConnection_GetKey_ConnectionFound(string key, bool opened)
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
-            var helper = new ConnectionHelper(settings);
+            using(var helper = new ConnectionHelper(settings))
             using (var connection = helper.GetSqlConnection(key))
             {
                 connection.Open();
@@ -162,16 +169,18 @@ namespace DataAccessFramework.Tests
         public void GetSqlConnection_GetKey_ExceptionThrown(string key)
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
-            var helper = new ConnectionHelper(settings);
-            try
+            using (var helper = new ConnectionHelper(settings))
             {
-                using (var connection = helper.GetSqlConnection(key))
+                try
                 {
+                    using (var connection = helper.GetSqlConnection(key))
+                    {
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                Assert.Pass(ex.Message);
+                catch (Exception ex)
+                {
+                    Assert.Pass(ex.Message);
+                }
             }
         }
 
@@ -183,13 +192,9 @@ namespace DataAccessFramework.Tests
         public void GetEntityConnections_ListOfEntityConnectionsReturned()
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
-            var helper = new ConnectionHelper(settings);
-
-            Assert.IsTrue(helper.EntityConnections != null && helper.EntityConnections.Any());
-
-            foreach (var connection in helper.EntityConnections)
+            using (var helper = new ConnectionHelper(settings))
             {
-                connection.Value.Dispose();
+                Assert.IsTrue(helper.EntityConnections != null && helper.EntityConnections.Any());
             }
         }
 
@@ -198,7 +203,7 @@ namespace DataAccessFramework.Tests
         public void GetEntityConnection_GetIndex_ConnectionFound(int index, bool opened)
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
-            var helper = new ConnectionHelper(settings);
+            using (var helper = new ConnectionHelper(settings))
             using (var connection = helper.GetEntityConnection(index))
             {
                 connection.Open();
@@ -212,16 +217,18 @@ namespace DataAccessFramework.Tests
         public void GetEntityConnection_GetIndex_ExceptionThrown(int index)
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
-            var helper = new ConnectionHelper(settings);
-            try
+            using (var helper = new ConnectionHelper(settings))
             {
-                using (var connection = helper.GetEntityConnection(index))
+                try
                 {
+                    using (var connection = helper.GetEntityConnection(index))
+                    {
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                Assert.Pass(ex.Message);
+                catch (Exception ex)
+                {
+                    Assert.Pass(ex.Message);
+                }
             }
         }
 
@@ -230,7 +237,7 @@ namespace DataAccessFramework.Tests
         public void GetEntityConnection_GetKey_ConnectionFound(string key, bool opened)
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
-            var helper = new ConnectionHelper(settings);
+            using (var helper = new ConnectionHelper(settings))
             using (var connection = helper.GetEntityConnection(key))
             {
                 connection.Open();
@@ -245,16 +252,18 @@ namespace DataAccessFramework.Tests
         public void GetEntityConnection_GetKey_ExceptionThrown(string key)
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
-            var helper = new ConnectionHelper(settings);
-            try
+            using (var helper = new ConnectionHelper(settings))
             {
-                using (var connection = helper.GetEntityConnection(key))
+                try
                 {
+                    using (var connection = helper.GetEntityConnection(key))
+                    {
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                Assert.Pass(ex.Message);
+                catch (Exception ex)
+                {
+                    Assert.Pass(ex.Message);
+                }
             }
         }
 

@@ -9,6 +9,7 @@ namespace DataAccessFramework.Tests
     [TestFixture]
     public class DataContextTransactionTest
     {
+        private ConnectionHelper _helper;
         private ApplicationDataContext _context;
 
         #region SetUp / TearDown
@@ -17,13 +18,14 @@ namespace DataAccessFramework.Tests
         public void Init()
         {
             var settings = (ConnectionSettings) ConfigurationManager.GetSection("connectionSettings");
-            var helper = new ConnectionHelper(settings);
-            this._context = new ApplicationDataContext(helper.GetConnectionString(0));
+            this._helper = new ConnectionHelper(settings);
+            this._context = new ApplicationDataContext(this._helper.GetConnectionString(0));
         }
 
         [TestFixtureTearDown]
         public void Dispose()
         {
+            this._helper.Dispose();
             this._context.Dispose();
         }
 
