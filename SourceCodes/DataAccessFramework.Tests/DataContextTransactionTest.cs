@@ -1,26 +1,45 @@
+using DataAccessFramework.Configuration;
+using DataAccessFramework.Helpers;
+using NUnit.Framework;
 using System;
 using System.Configuration;
-using NUnit.Framework;
-using NSubstitute;
 
 namespace DataAccessFramework.Tests
 {
     [TestFixture]
     public class DataContextTransactionTest
     {
+        private ApplicationDataContext _context;
+
         #region SetUp / TearDown
 
-        [SetUp]
+        [TestFixtureSetUp]
         public void Init()
-        { }
+        {
+            var settings = (ConnectionSettings) ConfigurationManager.GetSection("connectionSettings");
+            var helper = new ConnectionHelper(settings);
+            this._context = new ApplicationDataContext(helper.GetConnectionString(0));
+        }
 
-        [TearDown]
+        [TestFixtureTearDown]
         public void Dispose()
-        { }
+        {
+            this._context.Dispose();
+        }
+
+        #endregion SetUp / TearDown
+
+        #region Connection
+
+        [Test]
+        public void GetContext_ContextOpen()
+        {
+            Assert.IsTrue(this._context.Database.Exists());
+        }
 
         #endregion
 
-        #region Tests
+        #region Addition
 
         [Test]
         [TestCase("joebloggs", "abc123", "joe@test.org", true)]
@@ -44,6 +63,6 @@ namespace DataAccessFramework.Tests
             }
         }
 
-        #endregion
+        #endregion Addition
     }
 }

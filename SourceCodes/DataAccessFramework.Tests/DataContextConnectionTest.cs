@@ -26,29 +26,6 @@ namespace DataAccessFramework.Tests
 
         #endregion SetUp / TearDown
 
-        [Test]
-        [TestCase("SampleDataContext", true)]
-        public void ConnectDatabase_GetConnectionString_DatabaseConnected(string connectionName, bool connected)
-        {
-            var connectionString = ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                Assert.AreEqual(connected, connection.State == ConnectionState.Open);
-            }
-        }
-
-        [Test]
-        [TestCase("SampleDataContext", true)]
-        public void ConnectDbContext_GetConnectionString_DbContextConnected(string connectionName, bool exists)
-        {
-            var connectionString = ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
-            using (var context = new ApplicationDataContext(connectionString))
-            {
-                Assert.AreEqual(exists, context.Database.Exists());
-            }
-        }
-
         #region ConnectionString
 
         [Test]
