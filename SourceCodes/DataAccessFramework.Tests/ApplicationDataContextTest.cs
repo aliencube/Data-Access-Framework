@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using NUnit.Framework;
 using NSubstitute;
 
@@ -31,10 +28,22 @@ namespace DataAccessFramework.Tests
 		[TestCase("SampleDataContext", true)]
 		public void ConnectDatabase_GetConnectionString_DatabaseConnected(string connectionName, bool connected)
 		{
-			using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings[connectionName].ConnectionString))
+			var connectionString = ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
+			using (var connection = new SqlConnection(connectionString))
 			{
 				connection.Open();
 				Assert.AreEqual(connected, connection.State == ConnectionState.Open);
+			}
+		}
+
+		[Test]
+		[TestCase("SampleDataContext", true)]
+		public void ConnectDbContext_GetConnectionString_DbContextConnected(string connectionName, bool connected)
+		{
+			var connectionString = ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
+			using (var context = new ApplicationDataContext(connectionString))
+			{
+				Assert.AreEqual(connected, context.Database.Exists());
 			}
 		}
 
@@ -43,7 +52,9 @@ namespace DataAccessFramework.Tests
 		[TestCase("jackandjill", "abc123", "jj@test.org", true)]
 		public void CreateUsers_GetUserDetails_UserAdded(string username, string password, string email, bool added)
 		{
-			using (var context = new ApplicationDataContext())
+			const string connectionName = "SampleDataContext";
+			var connectionString = ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
+			using (var context = new ApplicationDataContext(connectionString))
 			{
 				var user = new User()
 					{
