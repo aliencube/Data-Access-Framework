@@ -8,6 +8,8 @@ namespace DataAccessFramework
     /// </summary>
     public partial class ApplicationDataContext : DbContext
     {
+        #region Constructors
+
         public ApplicationDataContext()
             : base("ApplicationDataContext")
         {
@@ -23,6 +25,10 @@ namespace DataAccessFramework
         {
         }
 
+        #endregion Constructors
+
+        #region Properties
+
         /// <summary>
         /// Gets or sets the list of users.
         /// </summary>
@@ -32,5 +38,11 @@ namespace DataAccessFramework
         /// Gets or sets the list of members.
         /// </summary>
         public DbSet<Member> Members { get; set; }
+
+        #endregion Properties
+
+        #region Methods
+
+        #endregion Methods
     }
 }
