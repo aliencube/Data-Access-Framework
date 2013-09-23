@@ -213,7 +213,18 @@ namespace DataAccessFramework.Helpers
                 //MultiSubnetFailover = connectionDetails.MultiSubnetFailover,
                 UserInstance = connectionDetails.UserInstance
             };
-            return sqlBuilder.ToString();
+            var connectionString = sqlBuilder.ToString();
+
+            //if (!String.IsNullOrWhiteSpace(connectionDetails.ApplicationIntent))
+            //{
+            //    if (!connectionString.EndsWith(";"))
+            //        connectionString += ";";
+
+            //    connectionString += String.Format("ApplicationIntent={0}", connectionDetails.ApplicationIntent);
+            //}
+            //connectionString += String.Format("MultiSubnetFailover={0}", connectionDetails.MultiSubnetFailover);
+
+            return connectionString;
         }
 
         #endregion Methods - ConnectionString
