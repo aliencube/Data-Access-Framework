@@ -48,21 +48,16 @@ namespace DataAccessFramework.Tests
         [TestCase("jackandjill", "abc123", "jj@test.org", true)]
         public void CreateUsers_GetUserDetails_UserAdded(string username, string password, string email, bool added)
         {
-            const string connectionName = "SampleDataContext";
-            var connectionString = ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
-            using (var context = new ApplicationDataContext(connectionString))
-            {
-                var user = new User()
-                {
-                    Username = username,
-                    Password = password,
-                    Email = email,
-                    DateCreated = DateTime.Now,
-                    CreatedBy = 0
-                };
-                context.Users.Add(user);
-                context.SaveChanges();
-            }
+            var user = new User()
+                       {
+                           Username = username,
+                           Password = password,
+                           Email = email,
+                           DateCreated = DateTime.Now,
+                           CreatedBy = 0
+                       };
+            this._context.Users.Add(user);
+            this._context.SaveChanges();
         }
 
         #endregion Addition
