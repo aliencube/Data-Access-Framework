@@ -44,8 +44,8 @@ namespace DataAccessFramework.Tests
         #region Addition
 
         [Test]
-        [TestCase("joebloggs", "abc123", "joe@test.org", true)]
-        [TestCase("jackandjill", "abc123", "jj@test.org", true)]
+        [TestCase("joebloggs", "abcd1234", "joe@test.org", true)]
+        [TestCase("jackandjill", "abcd1234", "jj@test.org", true)]
         public void CreateUsers_GetUserDetails_UserAdded(string username, string password, string email, bool added)
         {
             var user = new User()
