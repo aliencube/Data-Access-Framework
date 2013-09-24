@@ -12,10 +12,10 @@ namespace DataAccessFramework.Entities
         /// </summary>
         public int MemberId { get; set; }
 
-        /// <summary>
-        /// Gets or sets the userId of the account, as a foreign key.
-        /// </summary>
-        public int UserId { get; set; }
+        ///// <summary>
+        ///// Gets or sets the userId of the account, as a foreign key.
+        ///// </summary>
+        //public int UserId { get; set; }
 
         /// <summary>
         /// Gets or sets the given names of the account.

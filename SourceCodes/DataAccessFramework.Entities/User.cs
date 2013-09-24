@@ -38,14 +38,14 @@ namespace DataAccessFramework.Entities
         /// </summary>
         public int CreatedBy { get; set; }
 
-        /// <summary>
-        /// Gets the list of member instances.
-        /// </summary>
-        public virtual ICollection<Member> Members { get; set; }
-
         ///// <summary>
-        ///// Gets the member instance.
+        ///// Gets the list of member instances.
         ///// </summary>
-        //public virtual Member Member { get; set; }
+        //public virtual ICollection<Member> Members { get; set; }
+
+        /// <summary>
+        /// Gets the member instance.
+        /// </summary>
+        public virtual Member Member { get; set; }
     }
 }

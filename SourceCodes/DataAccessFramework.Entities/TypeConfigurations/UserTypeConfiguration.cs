@@ -23,6 +23,10 @@ namespace DataAccessFramework.Entities.TypeConfigurations
             this.Property(p => p.Email).IsRequired().HasMaxLength(128);
             this.Property(p => p.DateCreated).IsRequired();
             this.Property(p => p.CreatedBy).IsRequired();
+
+            this.HasOptional(p => p.Member)
+                .WithRequired(p => p.User)
+                .Map(p => p.MapKey("UserId"));
         }
 
         #endregion Constructors
