@@ -54,6 +54,7 @@ namespace DataAccessFramework.Tests
                            Username = username,
                            Password = password,
                            Email = email,
+                           Nickname = null,
                            DateCreated = DateTime.Now,
                            CreatedBy = 1
                        };

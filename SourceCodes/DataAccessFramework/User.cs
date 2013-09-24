@@ -29,6 +29,11 @@ namespace DataAccessFramework
         public string Email { get; set; }
 
         /// <summary>
+        /// Gets or sets the nickname of the account.
+        /// </summary>
+        public string Nickname { get; set; }
+
+        /// <summary>
         /// Gets or sets the date when the user is created.
         /// </summary>
         public DateTime DateCreated { get; set; }

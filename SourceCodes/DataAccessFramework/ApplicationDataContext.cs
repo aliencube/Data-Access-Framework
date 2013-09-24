@@ -15,7 +15,7 @@ namespace DataAccessFramework
         #region Constructors
 
         public ApplicationDataContext()
-            : base("ApplicationDataContext")
+            : base("SampleDatabase")
         {
         }
 

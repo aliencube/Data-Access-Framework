@@ -21,6 +21,7 @@ namespace DataAccessFramework
             this.Property(p => p.Username).IsRequired().HasMaxLength(32);
             this.Property(p => p.Password).IsRequired().HasMaxLength(64);
             this.Property(p => p.Email).IsRequired().HasMaxLength(128);
+            this.Property(p => p.Nickname).HasMaxLength(64);
             this.Property(p => p.DateCreated).IsRequired();
             this.Property(p => p.CreatedBy).IsRequired();
         }
