@@ -3,6 +3,7 @@ using DataAccessFramework.Helpers;
 using NUnit.Framework;
 using System;
 using System.Configuration;
+using System.Linq;
 
 namespace DataAccessFramework.Tests
 {
@@ -17,7 +18,7 @@ namespace DataAccessFramework.Tests
         [TestFixtureSetUp]
         public void Init()
         {
-            var settings = (ConnectionSettings) ConfigurationManager.GetSection("connectionSettings");
+            var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
             this._helper = new ConnectionHelper(settings);
             this._context = new ApplicationDataContext(this._helper.GetConnectionString(0));
         }
@@ -39,14 +40,14 @@ namespace DataAccessFramework.Tests
             Assert.IsTrue(this._context.Database.Exists());
         }
 
-        #endregion
+        #endregion Connection
 
         #region Addition
 
         [Test]
         [TestCase("joebloggs", "abcd1234", "joe@test.org", true)]
         [TestCase("jackandjill", "abcd1234", "jj@test.org", true)]
-        public void CreateUsers_GetUserDetails_UserAdded(string username, string password, string email, bool added)
+        public void CreateUser_GetUserDetails_UserAdded(string username, string password, string email, bool added)
         {
             var user = new User()
                        {
@@ -54,9 +55,28 @@ namespace DataAccessFramework.Tests
                            Password = password,
                            Email = email,
                            DateCreated = DateTime.Now,
-                           CreatedBy = 0
+                           CreatedBy = 1
                        };
             this._context.Users.Add(user);
+            this._context.SaveChanges();
+        }
+
+        [Test]
+        [TestCase("Joe", "Bloggs", 1, true)]
+        [TestCase("Jack", "Jill", 2, true)]
+        public void CreateMember_GetMemberDetails_MemberAdded(string givenNames, string surname, int userId, bool added)
+        {
+            var user = this._context.Users.Single(p => p.UserId == userId);
+
+            var member = new Member()
+                         {
+                             GivenNames = givenNames,
+                             Surname = surname,
+                             DateCreated = DateTime.Now,
+                             CreatedBy = 1,
+                             User = user
+                         };
+            this._context.Members.Add(member);
             this._context.SaveChanges();
         }
 
