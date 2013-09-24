@@ -23,7 +23,10 @@ namespace DataAccessFramework
             this.Property(p => p.DateCreated).IsRequired();
             this.Property(p => p.CreatedBy).IsRequired();
 
-            this.HasRequired(p => p.User).WithMany(p => p.Members).HasForeignKey(p => p.UserId).WillCascadeOnDelete();
+            this.HasRequired(p => p.User)
+                .WithMany(p => p.Members)
+                .HasForeignKey(p => p.UserId)
+                .WillCascadeOnDelete();
         }
 
         #endregion Constructors
