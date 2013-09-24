@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DataAccessFramework
+namespace DataAccessFramework.Entities
 {
     /// <summary>
     /// This represents a member entity of an account.

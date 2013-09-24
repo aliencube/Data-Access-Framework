@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DataAccessFramework.Tests")]
+[assembly: AssemblyTitle("DataAccessFramework.Entities")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyProduct("DataAccessFramework.Tests")]
+[assembly: AssemblyProduct("DataAccessFramework.Entities")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -17,4 +17,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("27828a43-e366-40bb-8636-0717ab603cae")]
+[assembly: Guid("fc13f251-7f61-4444-a225-5997ba428ed6")]

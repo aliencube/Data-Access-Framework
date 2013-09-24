@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
-namespace DataAccessFramework
+namespace DataAccessFramework.Entities.TypeConfigurations
 {
     /// <summary>
     /// This represents a user type configuration entity.
@@ -21,7 +21,6 @@ namespace DataAccessFramework
             this.Property(p => p.Username).IsRequired().HasMaxLength(32);
             this.Property(p => p.Password).IsRequired().HasMaxLength(64);
             this.Property(p => p.Email).IsRequired().HasMaxLength(128);
-            this.Property(p => p.Nickname).HasMaxLength(64);
             this.Property(p => p.DateCreated).IsRequired();
             this.Property(p => p.CreatedBy).IsRequired();
         }

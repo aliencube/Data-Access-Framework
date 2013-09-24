@@ -4,7 +4,6 @@ using NUnit.Framework;
 using System;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace DataAccessFramework.Tests
@@ -42,7 +41,7 @@ namespace DataAccessFramework.Tests
         [TestCase(0)]
         public void GetConnectionString_GetIndex_ConnectionFound(int index)
         {
-            var settings = (ConnectionSettings) ConfigurationManager.GetSection("connectionSettings");
+            var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
             using (var helper = new ConnectionHelper(settings))
             {
                 var connectionString = helper.GetConnectionString(index);
@@ -70,7 +69,7 @@ namespace DataAccessFramework.Tests
         }
 
         [Test]
-        [TestCase("SampleDataContext", "SampleDatabase")]
+        [TestCase("ApplicationDataContext", "ApplicationDatabase")]
         public void GetConnectionString_GetKey_ConnectionFound(string key, string initialCatalog)
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
@@ -83,8 +82,8 @@ namespace DataAccessFramework.Tests
         }
 
         [Test]
-        [TestCase("", "SampleDatabase")]
-        [TestCase("WrongKey", "SampleDatabase")]
+        [TestCase("", "ApplicationDatabase")]
+        [TestCase("WrongKey", "ApplicationDatabase")]
         public void GetConnectionString_GetKey_ExceptionThrown(string key, string initialCatalog)
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
@@ -120,7 +119,7 @@ namespace DataAccessFramework.Tests
         public void GetSqlConnection_GetIndex_ConnectionFound(int index, bool opened)
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
-            using(var helper = new ConnectionHelper(settings))
+            using (var helper = new ConnectionHelper(settings))
             using (var connection = helper.GetSqlConnection(index))
             {
                 connection.Open();
@@ -150,11 +149,11 @@ namespace DataAccessFramework.Tests
         }
 
         [Test]
-        [TestCase("SampleDataContext", true)]
+        [TestCase("ApplicationDataContext", true)]
         public void GetSqlConnection_GetKey_ConnectionFound(string key, bool opened)
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
-            using(var helper = new ConnectionHelper(settings))
+            using (var helper = new ConnectionHelper(settings))
             using (var connection = helper.GetSqlConnection(key))
             {
                 connection.Open();
@@ -233,7 +232,7 @@ namespace DataAccessFramework.Tests
         }
 
         [Test]
-        [TestCase("SampleDataContext", true)]
+        [TestCase("ApplicationDataContext", true)]
         public void GetEntityConnection_GetKey_ConnectionFound(string key, bool opened)
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");

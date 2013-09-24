@@ -84,6 +84,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Documents\Properties\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="DataContextTransactionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataContextConnectionTest.cs" />
@@ -98,6 +101,10 @@
     <ProjectReference Include="..\DataAccessFramework.Configuration\DataAccessFramework.Configuration.csproj">
       <Project>{74fc104f-2390-44da-9166-be200d7cea98}</Project>
       <Name>DataAccessFramework.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccessFramework.Entities\DataAccessFramework.Entities.csproj">
+      <Project>{96abb01c-4530-4136-aff3-5391943708a2}</Project>
+      <Name>DataAccessFramework.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataAccessFramework\DataAccessFramework.csproj">
       <Project>{cbcfc644-881d-48c6-b097-90b05712c2fc}</Project>

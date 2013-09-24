@@ -1,4 +1,5 @@
 using DataAccessFramework.Configuration;
+using DataAccessFramework.Entities;
 using DataAccessFramework.Helpers;
 using NUnit.Framework;
 using System;
@@ -54,7 +55,6 @@ namespace DataAccessFramework.Tests
                            Username = username,
                            Password = password,
                            Email = email,
-                           Nickname = null,
                            DateCreated = DateTime.Now,
                            CreatedBy = 1
                        };

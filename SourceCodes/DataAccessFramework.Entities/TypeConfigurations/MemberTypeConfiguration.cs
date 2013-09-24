@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
-namespace DataAccessFramework
+namespace DataAccessFramework.Entities.TypeConfigurations
 {
     /// <summary>
     /// This represents a member type configuration entity.

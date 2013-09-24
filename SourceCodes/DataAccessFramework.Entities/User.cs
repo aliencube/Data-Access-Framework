@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DataAccessFramework
+namespace DataAccessFramework.Entities
 {
     /// <summary>
     /// This represents a user entity of an account.
@@ -27,11 +27,6 @@ namespace DataAccessFramework
         /// Gets or sets the email address of the account.
         /// </summary>
         public string Email { get; set; }
-
-        /// <summary>
-        /// Gets or sets the nickname of the account.
-        /// </summary>
-        public string Nickname { get; set; }
 
         /// <summary>
         /// Gets or sets the date when the user is created.

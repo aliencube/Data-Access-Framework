@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccessFramework.Entities;
+using System;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
@@ -14,16 +15,27 @@ namespace DataAccessFramework
     {
         #region Constructors
 
+        /// <summary>
+        /// Initialises a new instance of the ApplicationDataContext object.
+        /// </summary>
         public ApplicationDataContext()
-            : base("SampleDatabase")
+            : base("ApplicationDatabase")
         {
         }
 
+        /// <summary>
+        /// Initialises a new instance of the ApplicationDataContext object.
+        /// </summary>
+        /// <param name="connectionString">SQL database connection string.</param>
         public ApplicationDataContext(string connectionString)
             : base(connectionString)
         {
         }
 
+        /// <summary>
+        /// Initialises a new instance of the ApplicationDataContext object.
+        /// </summary>
+        /// <param name="connection">SQL database connection</param>
         public ApplicationDataContext(DbConnection connection)
             : base(connection, true)
         {
@@ -32,6 +44,8 @@ namespace DataAccessFramework
         #endregion Constructors
 
         #region Properties
+
+        //  Add the list of entities here...
 
         /// <summary>
         /// Gets or sets the list of users.
@@ -66,22 +80,27 @@ namespace DataAccessFramework
                 .Single(m => m.Name == "Add" && m.GetGenericArguments()
                                                  .Any(a => a.Name == "TEntityType"));
 
-            //  Gets the assembly that contains entity type configurations.
-            var assembly = AppDomain.CurrentDomain
-                                    .GetAssemblies()
-                                    .Single(p => p.GetName().Name == "DataAccessFramework");
+            //  Gets the list of assemblies that contain entity type configurations.
+            var assemblies = AppDomain.CurrentDomain
+                                      .GetAssemblies()
+                                      .Where(p => p.GetName().Name.StartsWith("DataAccessFramework"))
+                                      .OrderBy(p => p.GetName().Name)
+                                      .ToList();
 
             //  Adds all types found.
-            foreach (var type in assembly.GetTypes()
-                                         .Where(t => t.BaseType != null
-                                                     && t.BaseType.IsGenericType
-                                                     && t.BaseType.GetGenericTypeDefinition() == typeof (EntityTypeConfiguration<>)))
+            foreach (var assembly in assemblies)
             {
-                var entityType = type.BaseType.GetGenericArguments().Single();
-                var entityConfig = assembly.CreateInstance(type.FullName);
+                foreach (var type in assembly.GetTypes()
+                                             .Where(t => t.BaseType != null
+                                                         && t.BaseType.IsGenericType
+                                                         && t.BaseType.GetGenericTypeDefinition() == typeof(EntityTypeConfiguration<>)))
+                {
+                    var entityType = type.BaseType.GetGenericArguments().Single();
+                    var entityConfig = assembly.CreateInstance(type.FullName);
 
-                addMethod.MakeGenericMethod(entityType)
-                         .Invoke(modelBuilder.Configurations, new object[] { entityConfig });
+                    addMethod.MakeGenericMethod(entityType)
+                             .Invoke(modelBuilder.Configurations, new object[] { entityConfig });
+                }
             }
 
             base.OnModelCreating(modelBuilder);
