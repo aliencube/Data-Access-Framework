@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DataAccessFramework")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("This provides a basic database context through entity framework code-first approach.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyProduct("DataAccessFramework")]
 [assembly: AssemblyCulture("")]

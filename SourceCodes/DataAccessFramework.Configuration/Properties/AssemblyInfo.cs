@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DataAccessFramework.Configuration")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("This provides direct access to the configuration section on app.config or web.config to manage SQL database connections.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyProduct("DataAccessFramework.Configuration")]
 [assembly: AssemblyCulture("")]
