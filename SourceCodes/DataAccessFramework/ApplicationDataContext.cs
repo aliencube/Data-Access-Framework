@@ -75,32 +75,27 @@ namespace DataAccessFramework
             //  http://romiller.com/2012/03/26/dynamically-building-a-model-with-code-first
 
             //  Gets the MethodInfo instance for "Add".
-            var addMethod = (typeof(ConfigurationRegistrar))
+            var addMethod = (typeof (ConfigurationRegistrar))
                 .GetMethods()
                 .Single(m => m.Name == "Add" && m.GetGenericArguments()
                                                  .Any(a => a.Name == "TEntityType"));
 
-            //  Gets the list of assemblies that contain entity type configurations.
-            var assemblies = AppDomain.CurrentDomain
-                                      .GetAssemblies()
-                                      .Where(p => p.GetName().Name.StartsWith("DataAccessFramework"))
-                                      .OrderBy(p => p.GetName().Name)
-                                      .ToList();
+            //  Gets an assembly that contains entity type configurations.
+            var assembly = AppDomain.CurrentDomain
+                                    .GetAssemblies()
+                                    .Single(p => p.GetName().Name.StartsWith("DataAccessFramework.Entities"));
 
-            //  Adds all types found.
-            foreach (var assembly in assemblies)
+            //  Adds all types found within the assembly.
+            foreach (var type in assembly.GetTypes()
+                                         .Where(t => t.BaseType != null
+                                                     && t.BaseType.IsGenericType
+                                                     && t.BaseType.GetGenericTypeDefinition() == typeof (EntityTypeConfiguration<>)))
             {
-                foreach (var type in assembly.GetTypes()
-                                             .Where(t => t.BaseType != null
-                                                         && t.BaseType.IsGenericType
-                                                         && t.BaseType.GetGenericTypeDefinition() == typeof(EntityTypeConfiguration<>)))
-                {
-                    var entityType = type.BaseType.GetGenericArguments().Single();
-                    var entityConfig = assembly.CreateInstance(type.FullName);
+                var entityType = type.BaseType.GetGenericArguments().Single();
+                var entityConfig = assembly.CreateInstance(type.FullName);
 
-                    addMethod.MakeGenericMethod(entityType)
-                             .Invoke(modelBuilder.Configurations, new object[] { entityConfig });
-                }
+                addMethod.MakeGenericMethod(entityType)
+                         .Invoke(modelBuilder.Configurations, new object[] {entityConfig});
             }
 
             base.OnModelCreating(modelBuilder);
