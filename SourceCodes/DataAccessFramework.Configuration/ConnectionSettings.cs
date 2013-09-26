@@ -8,6 +8,8 @@ namespace DataAccessFramework.Configuration
     /// </summary>
     public class ConnectionSettings : ConfigurationSection, IConnectionSettings
     {
+        #region Properties
+
         /// <summary>
         /// Gets or sets the collection of connection details.
         /// </summary>
@@ -18,5 +20,7 @@ namespace DataAccessFramework.Configuration
             get { return (ConnectionDetailsElementCollection)this["connectionDetails"]; }
             set { this["connectionDetails"] = value; }
         }
+
+        #endregion Properties
     }
 }
