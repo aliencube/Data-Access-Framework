@@ -13,7 +13,7 @@ namespace DataAccessFramework.Helpers
     /// <summary>
     /// This helps to manage connections for data soruce.
     /// </summary>
-    public class ConnectionHelper : IConnectionHelper, IDisposable
+    public class ConnectionHelper : IConnectionHelper
     {
         #region Constructors
 

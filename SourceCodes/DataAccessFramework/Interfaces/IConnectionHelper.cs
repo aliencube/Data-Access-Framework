@@ -1,4 +1,5 @@
 ﻿using DataAccessFramework.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Data.EntityClient;
 using System.Data.SqlClient;
@@ -8,7 +9,7 @@ namespace DataAccessFramework.Interfaces
     /// <summary>
     /// This provides interfaces to the ConnectionHelper class.
     /// </summary>
-    public interface IConnectionHelper
+    public interface IConnectionHelper : IDisposable
     {
         #region Properties
 
