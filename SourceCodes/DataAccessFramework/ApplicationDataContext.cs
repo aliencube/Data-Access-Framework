@@ -57,6 +57,21 @@ namespace DataAccessFramework
         /// </summary>
         public DbSet<Member> Members { get; set; }
 
+        /// <summary>
+        /// Gets or sets the list of products.
+        /// </summary>
+        public DbSet<Product> Products { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of orders.
+        /// </summary>
+        public DbSet<Order> Orders { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of product orders.
+        /// </summary>
+        public DbSet<ProductOrder> ProductOrders { get; set; }
+
         #endregion Properties
 
         #region Methods
