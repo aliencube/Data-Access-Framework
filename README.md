@@ -1,6 +1,50 @@
 # Data Access Framework #
 
-This library provides an easy configuration parameters to create a database context for entity framework.
+**Data Access Framework** provides an easy configuration parameters to create a database context for entity framework.
+
+
+# Requirements #
+
+* .NET Framework 4.5 or higher
+* [Entity Framework 6.0](http://www.nuget.org/packages/EntityFramework) or higher
+
+
+# Configurations #
+
+In order to use **Data Access Framework** within your application, you should add the followings into your `app.config` or `web.config`.
+
+
+## `configSections` ##
+
+Add the following `<section>` element into the `<configSections>` element.
+
+    <configSections>
+        <section name="connectionSettings"
+                 type="DataAccessFramework.Configuration.ConnectionSettings, DataAccessFramework.Configuration"
+                 requirePermission="false" />
+    </configSections>
+
+
+## `connectionSettings` ##
+
+Add the following `<connectionSettings>` element under the `<configuration>` element &ndash; the `root` element.
+
+    <connectionSettings>
+        <connectionDetails>
+            <clear />
+            <add key="ApplicationDataContext"
+                 use="true"
+                 type="EntityFramework"
+                 dataContext="ApplicationDataContext"
+                 dataSource="(LocalDB)\v11.0"
+                 initialCatalog="ApplicationDatabase"
+                 persistSecurityInfo="true"
+                 integratedSecurity="true"
+                 multipleActiveResultSets="true"
+                 connectionTimeout="30"
+                 provider="System.Data.SqlClient" />
+        </connectionDetails>
+    </connectionSettings>
 
 
 # License #
