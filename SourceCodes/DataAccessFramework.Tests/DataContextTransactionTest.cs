@@ -1,6 +1,6 @@
 using DataAccessFramework.Configuration;
+using DataAccessFramework.Configuration.Interfaces;
 using DataAccessFramework.Entities;
-using DataAccessFramework.Helpers;
 using NUnit.Framework;
 using System;
 using System.Configuration;
@@ -11,7 +11,7 @@ namespace DataAccessFramework.Tests
     [TestFixture]
     public class DataContextTransactionTest
     {
-        private ConnectionHelper _helper;
+        private IConnectionBuilder _builder;
         private ApplicationDataContext _context;
 
         #region SetUp / TearDown
@@ -20,14 +20,14 @@ namespace DataAccessFramework.Tests
         public void Init()
         {
             var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
-            this._helper = new ConnectionHelper(settings);
-            this._context = new ApplicationDataContext(this._helper.GetConnectionString(0));
+            this._builder = new ConnectionBuilder(settings);
+            this._context = new ApplicationDataContext(this._builder.GetConnectionString(0));
         }
 
         [TestFixtureTearDown]
         public void Dispose()
         {
-            this._helper.Dispose();
+            this._builder.Dispose();
             this._context.Dispose();
         }
 

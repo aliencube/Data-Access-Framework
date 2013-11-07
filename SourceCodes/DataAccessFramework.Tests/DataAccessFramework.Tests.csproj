@@ -48,6 +48,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DataAccessFramework.Configuration, Version=1.1.5060.18590, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\DataAccessFramework.Configuration\net45\DataAccessFramework.Configuration.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
@@ -105,10 +109,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccessFramework.Configuration\DataAccessFramework.Configuration.csproj">
-      <Project>{74fc104f-2390-44da-9166-be200d7cea98}</Project>
-      <Name>DataAccessFramework.Configuration</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataAccessFramework.Entities\DataAccessFramework.Entities.csproj">
       <Project>{96abb01c-4530-4136-aff3-5391943708a2}</Project>
       <Name>DataAccessFramework.Entities</Name>
