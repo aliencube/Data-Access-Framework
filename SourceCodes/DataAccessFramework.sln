@@ -21,6 +21,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D34100
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessFramework.Entities", "DataAccessFramework.Entities\DataAccessFramework.Entities.csproj", "{96ABB01C-4530-4136-AFF3-5391943708A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessFramework.Configuration.40", "DataAccessFramework.Configuration.40\DataAccessFramework.Configuration.40.csproj", "{FBAF4E40-7395-4932-B5A3-4851EB03ABF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessFramework.Configuration.45", "DataAccessFramework.Configuration.45\DataAccessFramework.Configuration.45.csproj", "{F5DB6294-D7F2-4888-8519-226F110C0ABD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,14 @@ Global
 		{96ABB01C-4530-4136-AFF3-5391943708A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96ABB01C-4530-4136-AFF3-5391943708A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96ABB01C-4530-4136-AFF3-5391943708A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBAF4E40-7395-4932-B5A3-4851EB03ABF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBAF4E40-7395-4932-B5A3-4851EB03ABF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBAF4E40-7395-4932-B5A3-4851EB03ABF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBAF4E40-7395-4932-B5A3-4851EB03ABF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5DB6294-D7F2-4888-8519-226F110C0ABD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5DB6294-D7F2-4888-8519-226F110C0ABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5DB6294-D7F2-4888-8519-226F110C0ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5DB6294-D7F2-4888-8519-226F110C0ABD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
