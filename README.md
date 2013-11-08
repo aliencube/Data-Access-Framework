@@ -5,7 +5,7 @@
 
 # Requirements #
 
-* .NET Framework 4.5 or higher
+* .NET Framework 4.0 or higher
 * [Entity Framework 6.0](http://www.nuget.org/packages/EntityFramework) or higher
 
 
@@ -19,9 +19,9 @@ In order to use **Data Access Framework** within your application, you should ad
 Add the following `<section>` element into the `<configSections>` element.
 
     <configSections>
-        <section name="connectionSettings"
-                 type="DataAccessFramework.Configuration.ConnectionSettings, DataAccessFramework.Configuration"
-                 requirePermission="false" />
+      <section name="connectionSettings"
+               type="DataAccessFramework.Configuration.ConnectionSettings, DataAccessFramework.Configuration"
+               requirePermission="false" />
     </configSections>
 
 
@@ -30,21 +30,49 @@ Add the following `<section>` element into the `<configSections>` element.
 Add the following `<connectionSettings>` element under the `<configuration>` element &ndash; the `root` element.
 
     <connectionSettings>
-        <connectionDetails>
-            <clear />
-            <add key="ApplicationDataContext"
-                 use="true"
-                 type="EntityFramework"
-                 dataContext="ApplicationDataContext"
-                 dataSource="(LocalDB)\v11.0"
-                 initialCatalog="ApplicationDatabase"
-                 persistSecurityInfo="true"
-                 integratedSecurity="true"
-                 multipleActiveResultSets="true"
-                 connectionTimeout="30"
-                 provider="System.Data.SqlClient" />
-        </connectionDetails>
+      <connectionDetails>
+        <clear />
+        <add key="ApplicationDataContext"
+             use="true"
+             type="EntityFramework"
+             dataContext="ApplicationDataContext"
+             dataSource="(LocalDB)\v11.0"
+             initialCatalog="ApplicationDatabase"
+             persistSecurityInfo="true"
+             integratedSecurity="true"
+             multipleActiveResultSets="true"
+             connectionTimeout="30"
+             provider="System.Data.SqlClient" />
+      </connectionDetails>
     </connectionSettings>
+
+
+## Getting Started ##
+
+Once configuration is complete like above, you can build your connection string and use it like:
+
+    var settings = ConfigurationManager.GetSection("connectionSettings") as ConnectionSettings;
+    var builder = new ConnectionBuilder(settings);
+    var connectionString = builder.GetConnectionString(key);
+
+    // For SQL Connection
+    using (var sqlConnection = builder.GetSqlConnection(key))
+    {
+      ...
+    }
+
+    // For Entity Framework #1
+    using (var context = new ApplicationDataContext(connectionString))
+    {
+      ...
+    }
+
+    // For Entity Framework #2
+    using (var sqlConnection = builder.GetSqlConnection(key))
+    using (var context = new ApplicationDataContext(sqlConnection))
+    {
+      ...
+    }
 
 
 # License #
