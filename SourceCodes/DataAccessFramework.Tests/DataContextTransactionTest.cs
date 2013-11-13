@@ -11,6 +11,7 @@ namespace DataAccessFramework.Tests
     [TestFixture]
     public class DataContextTransactionTest
     {
+        private IConnectionSettings _settings;
         private IConnectionBuilder _builder;
         private ApplicationDataContext _context;
 
@@ -19,16 +20,17 @@ namespace DataAccessFramework.Tests
         [TestFixtureSetUp]
         public void Init()
         {
-            var settings = (ConnectionSettings)ConfigurationManager.GetSection("connectionSettings");
-            this._builder = new ConnectionBuilder(settings);
+            this._settings = ConfigurationManager.GetSection("connectionSettings") as ConnectionSettings;
+            this._builder = new ConnectionBuilder(this._settings);
             this._context = new ApplicationDataContext(this._builder.GetConnectionString(0));
         }
 
         [TestFixtureTearDown]
         public void Dispose()
         {
-            this._builder.Dispose();
             this._context.Dispose();
+            this._builder.Dispose();
+            this._settings.Dispose();
         }
 
         #endregion SetUp / TearDown
